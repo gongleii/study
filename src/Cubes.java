@@ -2,10 +2,10 @@
  * Created by xzjs on 14-4-13.
  */
 public class Cubes {
-    private char[] _c;
+    public char[] _c;
 
     public Cubes(char[] c){
-        _c=c;
+        _c=c.clone();
     }
 
     //判断所处状态是否是目的状态
@@ -56,15 +56,10 @@ public class Cubes {
 
     //判断两个积木块是否相等
     public boolean cubeEqual(Cubes c){
-        if(_c.equals(c.get_c())){
+        if(_c.equals(c._c)){
             return true;
         }else{
             return false;
         }
-    }
-
-    //获得代表积木块的字符串
-    public char[] get_c(){
-        return _c;
     }
 }

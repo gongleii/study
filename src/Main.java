@@ -32,7 +32,8 @@ public class Main extends JFrame implements ActionListener
         }else if(e.getSource()==jb){
             /*Demo d = new Demo(jtxtstr.getText());
             d.demoShow();*/
-            new Calculate(jtxtstr.getText());
+            //new Calculate(jtxtstr.getText());
+            Calculate c=new Calculate(jtxtstr.getText());
         }
     }
 
