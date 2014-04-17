@@ -8,12 +8,12 @@ import java.awt.geom.*;
 
 public class Demo extends JPanel /*implements ActionListener */{
 
-    char shapes[];
+    Node _n;
     //Timer t = new Timer(500,this);
     int i=10;
 
-    public Demo(String str){
-        shapes=str.toCharArray();
+    public Demo(Node n){
+        _n=n;
     }
 
     public void paint(Graphics g){
@@ -49,5 +49,19 @@ public class Demo extends JPanel /*implements ActionListener */{
         jf.setBounds(10,10,20+100*shapes.length,340);
         jf.setResizable(false);
         jf.setVisible(true);
+    }
+
+    private int[] distance() {
+        for (int j = 0; j <_n._lc.size()-1 ; j++) {
+            char[] a1=_n._lc.get(j)._c;
+            char[] a2=_n._lc.get(j+1)._c;
+            for (int k = 0; k <a1.length ; k++) {
+                if(a1[k]!=a2[k]){
+                    if(a1[k]=='e'){
+
+                    }
+                }
+            }
+        }
     }
 }
