@@ -45,7 +45,7 @@ public class Cubes {
     }
 
     //找到e所对应的索引
-    private int indexOfE(){
+    public int indexOfE(){
         for (int i = 0; i < _c.length; i++) {
             if(_c[i]=='e'){
                 return i;

@@ -19,6 +19,9 @@ public class Calculate {
         open.add(n);
         if(!open.get(0)._lc.get(open.get(0)._lc.size()-1).isFinished()) {
             tryOneTry();
+        }else {
+            Demo d=new Demo(open.get(0));
+            d.demoShow();
         }
     }
 
@@ -27,6 +30,9 @@ public class Calculate {
         open=open.get(0).getNextNodes(open);
         if(!open.get(0)._lc.get(open.get(0)._lc.size()-1).isFinished()) {
             tryOneTry();
+        }else {
+            Demo d=new Demo(open.get(0));
+            d.demoShow();
         }
     }
 

@@ -30,9 +30,6 @@ public class Main extends JFrame implements ActionListener
         if(e.getSource()==jtxtstr){
             jb.requestFocus();
         }else if(e.getSource()==jb){
-            /*Demo d = new Demo(jtxtstr.getText());
-            d.demoShow();*/
-            //new Calculate(jtxtstr.getText());
             Calculate c=new Calculate(jtxtstr.getText());
         }
     }
