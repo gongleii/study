@@ -46,13 +46,18 @@ public class Node {
             if(c!=null){
                 int value = Math.abs(x)-1>0?Math.abs(x)-1:1;
                 Node n =ln.get(0).nodeAdd(c, value);
+                int num=0;
                 for (int i = 0; i < ln.size() ; i++) {
                     int cha = n.nodeCompare(ln.get(i));
                     if(cha<0){
                         ln.set(i,n);
+                        break;
                     }else if (cha==9999){
-                        ln.add(n);
+                        num++;
                     }
+                }
+                if(num==ln.size()){
+                    ln.add(n);
                 }
             }
         }
