@@ -17,7 +17,7 @@ public class Calculate {
         lc.add(c);
         Node n = new Node(lc,0);
         open.add(n);
-        if(!open.get(0)._lc.get(open.get(0)._lc.size()-1).isFinished()) {
+        if(open.get(0)._lc.get(open.get(0)._lc.size()-1).isFinished()!=0) {
             tryOneTry();
         }else {
             Demo d=new Demo(open.get(0));
@@ -28,7 +28,7 @@ public class Calculate {
     private void tryOneTry(){
         closed.add(open.get(0));
         open=open.get(0).getNextNodes(open);
-        if(!open.get(0)._lc.get(open.get(0)._lc.size()-1).isFinished()) {
+        if(open.get(0)._lc.get(open.get(0)._lc.size()-1).isFinished()!=0) {
             tryOneTry();
         }else {
             Demo d=new Demo(open.get(0));

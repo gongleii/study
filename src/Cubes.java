@@ -9,20 +9,18 @@ public class Cubes {
     }
 
     //判断所处状态是否是目的状态
-    public boolean isFinished(){
-        int sum =0;
+    public int isFinished(){
+        int m=0;
         for (int i = 0; i < _c.length; i++) {
-            if(_c[i]=='b'){
-                if(sum<i||i==0){
-                    return false;
-                }else{
-                    return true;
-                }
-            }else{
-                sum++;
-            }
+           if(_c[i]=='b'){
+               for (int j=i;j<_c.length;j++){
+                   if(_c[j]=='w'){
+                       m++;
+                   }
+               }
+           }
         }
-        return true;
+        return m;
     }
 
     public Cubes move(int i){

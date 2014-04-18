@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 
-public class Demo extends JPanel implements ActionListener {
+public class Demo extends JFrame implements ActionListener {
 
     Node _n;
-    Timer t = new Timer(5,this);
+    Timer t = new Timer(50,this);
     int i=0;
     private Cubes _cube;
     private int x=0,y=0;
@@ -26,17 +26,18 @@ public class Demo extends JPanel implements ActionListener {
         if(step!=0) {
             if (x == 0 && y > -100) {
                 y -= 10;
-            } else if (x != step * 100 && y == -100) {
-                x += step * 10 / Math.abs(step);
-            } else if (x == step * 100 && y != 0) {
+            } else if ((x != -step * 100) && y == -100) {
+                x -= step * 10 / Math.abs(step);
+            } else if ((x == -step * 100) && y != 0) {
                 y += 10;
-            } else if (x == step * 100 && y == 0) {
+            } else if ((x == -step * 100) && y == 0) {
                 if (i == _n._lc.size() - 1) {
                     t.stop();
                     return;
                 } else {
                     _cube = _n._lc.get(++i);
                     step = howToMove().get(i);
+                    x=0;
                 }
             }
             this.repaint();
@@ -48,9 +49,12 @@ public class Demo extends JPanel implements ActionListener {
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(getContentPane().getBackground());
+        g2.fillRect(0,0,getContentPane().getWidth(),getContentPane().getHeight());
         for (int j = 0; j < _cube._c.length; j++) {
             g2.setColor(Color.gray);
-            RoundRectangle2D rec=new RoundRectangle2D.Float(10+100*j,110,100,100,20,20);
+            //RoundRectangle2D rec=new RoundRectangle2D.Float(10+100*j,110,100,100,20,20);
+            //g2.fill(rec);
             switch (_cube._c[j]){
                 case 'w':
                     g2.setColor(Color.WHITE);
@@ -59,7 +63,7 @@ public class Demo extends JPanel implements ActionListener {
                     g2.setColor(Color.BLACK);
                     break;
                 default:
-                    break;
+                    continue;
             }
             RoundRectangle2D rec2;
             if (j==_cube.indexOfE()+step) {
@@ -67,23 +71,20 @@ public class Demo extends JPanel implements ActionListener {
             }else {
                 rec2 = new RoundRectangle2D.Float(10 + 100 * j , 110 , 100, 100, 20, 20);
             }
-            g2.fill(rec);
             g2.fill(rec2);
         }
     }
 
     public void demoShow(){
-        JFrame jf = new JFrame();
-        jf.add(this);
-        jf.setTitle("试试画布");
+        this.setTitle("试试画布");
         _cube=_n._lc.get(i);
         if(howToMove().size()!=0) {
             step = howToMove().get(i);
         }
 
-        jf.setBounds(10,10,20+100*_cube._c.length,340);
-        jf.setResizable(false);
-        jf.setVisible(true);
+        this.setBounds(10,10,20+100*_cube._c.length,340);
+        this.setResizable(false);
+        this.setVisible(true);
         t.start();
     }
 
@@ -102,6 +103,7 @@ public class Demo extends JPanel implements ActionListener {
                 }
             }
         }
+        steps.add(0);
         return steps;
     }
 }

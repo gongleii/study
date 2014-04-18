@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -42,7 +43,7 @@ public class Node {
         };
         int[] a={-3,-2,-1,1,2,3};
         for(int x : a){
-            Cubes c = _lc.get(0).move(x);
+            Cubes c = _lc.get(_lc.size()-1).move(x);
             if(c!=null){
                 int value = Math.abs(x)-1>0?Math.abs(x)-1:1;
                 Node n =ln.get(0).nodeAdd(c, value);
@@ -57,12 +58,17 @@ public class Node {
                     }
                 }
                 if(num==ln.size()){
-                    ln.add(n);
+                    char[] c1=n._lc.get(0)._c;
+                    char[] c2=n._lc.get(n._lc.size()-1)._c;
+                    String s1=String.valueOf(c1);
+                    String s2=String.valueOf(c2);
+                    if(!(s1.equals(s2))) {
+                        ln.add(n);
+                    }
                 }
             }
         }
         ln.remove(0);
-        //ln.sort(new sortByValue());
         Collections.sort(ln,comparator);
         return ln;
     }
