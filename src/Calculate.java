@@ -27,7 +27,7 @@ public class Calculate {
 
     private void tryOneTry(){
         closed.add(open.get(0));
-        open=open.get(0).getNextNodes(open);
+        open=open.get(0).getNextNodes(open,closed);
         if(open.get(0)._lc.get(open.get(0)._lc.size()-1).isFinished()!=0) {
             tryOneTry();
         }else {

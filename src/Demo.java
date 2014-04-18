@@ -53,8 +53,6 @@ public class Demo extends JFrame implements ActionListener {
         g2.fillRect(0,0,getContentPane().getWidth(),getContentPane().getHeight());
         for (int j = 0; j < _cube._c.length; j++) {
             g2.setColor(Color.gray);
-            //RoundRectangle2D rec=new RoundRectangle2D.Float(10+100*j,110,100,100,20,20);
-            //g2.fill(rec);
             switch (_cube._c[j]){
                 case 'w':
                     g2.setColor(Color.WHITE);
@@ -82,7 +80,7 @@ public class Demo extends JFrame implements ActionListener {
             step = howToMove().get(i);
         }
 
-        this.setBounds(10,10,20+100*_cube._c.length,340);
+        this.setBounds(10,10,100+100*(_cube._c.length+1),300);
         this.setResizable(false);
         this.setVisible(true);
         t.start();

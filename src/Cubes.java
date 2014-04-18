@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Created by xzjs on 14-4-13.
  */
@@ -25,7 +27,12 @@ public class Cubes {
 
     public Cubes move(int i){
         Cubes c = new Cubes(_c);
+        int a=c.cubeToInt();
         if(c.m(i)){
+            int b=cubeToInt();
+            if(a>b){
+                return null;
+            }
             return c;
         }
         return null;
@@ -54,10 +61,24 @@ public class Cubes {
 
     //判断两个积木块是否相等
     public boolean cubeEqual(Cubes c){
-        if(_c.equals(c._c)){
+        if(Arrays.equals(_c,c._c)){
             return true;
         }else{
             return false;
         }
+    }
+
+    public int cubeToInt(){
+        int m=0;
+        for (char x:_c){
+            switch (x){
+                case 'w':
+                    m=m*10+1;
+                    break;
+                default:
+                    m*=10;
+            }
+        }
+        return m;
     }
 }

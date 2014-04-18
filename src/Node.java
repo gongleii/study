@@ -24,17 +24,16 @@ public class Node {
         return new Node(alc,value);
     }
 
-    //比较两个节点的状态，返回值为前者减去后者，若字符不同或耗散值相同则返回0
-    public int nodeCompare(Node n){
-        if (_lc.get(0).cubeEqual(n._lc.get(0))
-                &&_lc.get(_lc.size()-1).cubeEqual(n._lc.get(n._lc.size()-1))){
-            return _value-n._value;
+    //比较两个节点的最后一个字符串
+    public boolean nodeCompare(Node n){
+        if (_lc.get(_lc.size()-1).cubeEqual(n._lc.get(n._lc.size()-1))){
+            return true;
         }
-        return 9999;
+        return false;
     }
 
     //计算链表首元素接下来的值并且将计算结果插入链表
-    public ArrayList<Node> getNextNodes(ArrayList<Node> ln){
+    public ArrayList<Node> getNextNodes(ArrayList<Node> ln,ArrayList<Node> lc){
         Comparator<Node> comparator = new Comparator<Node>() {
             @Override
             public int compare(Node node, Node node2) {
@@ -47,17 +46,21 @@ public class Node {
             if(c!=null){
                 int value = Math.abs(x)-1>0?Math.abs(x)-1:1;
                 Node n =ln.get(0).nodeAdd(c, value);
-                int num=0;
-                for (int i = 0; i < ln.size() ; i++) {
-                    int cha = n.nodeCompare(ln.get(i));
-                    if(cha<0){
-                        ln.set(i,n);
-                        break;
-                    }else if (cha==9999){
-                        num++;
+                boolean num=true;
+                for (int i =0;i<lc.size();i++){
+                    if(n.nodeCompare(lc.get(i))){
+                        num=false;
                     }
                 }
-                if(num==ln.size()){
+                if(num==false){
+                    continue;
+                }
+                for (int i = 0; i < ln.size() ; i++) {
+                    if(n.nodeCompare(ln.get(i))){
+                        num=false;
+                    }
+                }
+                if(num==true){
                     char[] c1=n._lc.get(0)._c;
                     char[] c2=n._lc.get(n._lc.size()-1)._c;
                     String s1=String.valueOf(c1);
@@ -65,6 +68,8 @@ public class Node {
                     if(!(s1.equals(s2))) {
                         ln.add(n);
                     }
+                }else {
+                    continue;
                 }
             }
         }
