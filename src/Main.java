@@ -23,6 +23,7 @@ public class Main extends JFrame implements ActionListener
         this.setTitle("滑动积木块");
         this.setResizable(false);
         this.setBounds(100,100,300,250);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 
