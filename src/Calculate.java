@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +35,24 @@ public class Calculate {
         if(open.get(0)._lc.get(open.get(0)._lc.size()-1).isFinished()!=0) {
             tryOneTry();
         }else {
-            Demo d=new Demo(open.get(0));
-            d.demoShow();
+           // Demo d=new Demo(open.get(0));
+            //d.demoShow();
+            String fileName="get.txt";
+            try {
+                FileWriter writer = new FileWriter(fileName);
+                String s="";
+                for(int i=0;i<open.get(0)._lc.size();i++){
+                    //s+=open.get(0)._lc.get(i)._c.toString()+"\n";
+                    String ss = new String(open.get(0)._lc.get(i)._c);
+                    s+=ss+"\r\n";
+                }
+                writer.write(s);
+                writer.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+
         }
     }
 

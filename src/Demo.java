@@ -46,7 +46,7 @@ public class Demo extends JFrame implements ActionListener {
         }else {
             t.stop();
             try {
-                Thread.currentThread().sleep(1000);
+                Thread.currentThread().sleep(2000);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
